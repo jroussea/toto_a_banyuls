@@ -11,9 +11,10 @@ The tool used for BLAST is Diamond (v2.1.8). SeqKit2 (2.8.2) is also used.
 
 ## Installation
 
-Ce pipeline a été testé sur Linux (exécution local : Ubuntu 22.04, cluster : SLURM). Aucune version n'a été testé sur MacOS et sur Windows.
+This pipeline has been tested on Linux (local execution: Ubuntu 22.04, cluster: SLURM). No version has been tested on MacOS or Windows.
 
-Pour utiliser ce pipeline, Conda (ou Mamba) doit être installé : 
+To use this pipeline Conda (or Mamba) must be installed
+
 - Installation with [Miniconda](https://docs.anaconda.com/miniconda/miniconda-install/)
 - Installation with [Anacodna](https://docs.anaconda.com/anaconda/install/)
 - Installation with [Miniforge](https://github.com/conda-forge/miniforge?tab=readme-ov-file) :heart:
