@@ -5,7 +5,7 @@ This pipeline has been tested on Linux (Ubuntu 22.04). No version has been teste
 To use this pipeleine, you need to install conda. 
 - Installation with [Miniconda](https://docs.anaconda.com/miniconda/miniconda-install/)
 - Installation with [Anacodna](https://docs.anaconda.com/anaconda/install/)
-- Installation with [Miniforge](https://github.com/conda-forge/miniforge?tab=readme-ov-file) :heart:
+- :heart: Installation with [Miniforge](https://github.com/conda-forge/miniforge?tab=readme-ov-file) :heart:
 
 ## Step 1 - Create and activate a conda environment
 
