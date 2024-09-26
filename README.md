@@ -50,11 +50,11 @@ bash local_toto_search_homologs.sh
 
 > [!NOTE]
 > You need to modify the various variables: \
-> _SCRIPT_ \
-> _FASTA_ \
-> _TARA_ \
-> _WORKDIR_ \
-> _CONDAENV_
+> - **_SCRIPT_** \
+> - **_FASTA_** \
+> - **_TARA_** \
+> - **_WORKDIR_** \
+> - **_CONDAENV_**
 
 > [!TIP]
 > The path to the Conda environment can be found using the command `conda env list`.
