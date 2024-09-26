@@ -5,13 +5,13 @@ This pipeline has been tested on Linux (Ubuntu 22.04). No version has been teste
 To use this pipeleine, you need to install conda. 
 - Installation with [Miniconda](https://docs.anaconda.com/miniconda/miniconda-install/)
 - Installation with [Anacodna](https://docs.anaconda.com/anaconda/install/)
-- Installation with [Miniforge](https://github.com/conda-forge/miniforge?tab=readme-ov-file) [My favorite]
+- Installation with [Miniforge](https://github.com/conda-forge/miniforge?tab=readme-ov-file) [:heart:]
 
 ## Step 1 - Create and activate a conda environment
 
 To run this pipeline, you need to create a conda environment. We use the `environment.yml` file, which contains all the different tools (Seqkit, Diamond) and languages (Python) used by the pipeline.
 
-> **_NOTE:_** \
+> [!NOTE] 
 > The use of a Conda environment ensures the reproducibility of bioinformatics analyses. Sharing a YAML file ensures that the tools installed are in the correct version.
 
 ```bash
