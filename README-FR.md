@@ -19,7 +19,7 @@ Afin d'utiliser ce pipeline Conda (ou Mamba) doit être installé :
 - Installation avec [Miniforge](https://github.com/conda-forge/miniforge?tab=readme-ov-file) :heart:
 
 > [!TIP]
-> L'utilisation d'un environnement Conda assure la reproductibilité des analyses et, plus généralement, le respect des principes FAIR (Findable, Accessible, Interoperable, Reusable).
+> L'utilisation d'un environnement Conda assure la reproductibilité des analyses et, plus généralement, le respect des principes FAIR (Findable, Accessible, Interoperable, Reusable). \
 > Il permet de s'assurer que les versions des outils, modules ou packages sont dans les versions choisi compatible avec le pipeline
 
 Pour plus d'information concernant les principes FAIR : [https://en.wikipedia.org/wiki/Fair_data](https://en.wikipedia.org/wiki/Fair_data).
@@ -49,14 +49,14 @@ bash local_toto_search_homologs.sh
 ```
 
 > [!NOTE]
-> Il faut modifier les différentes variables
-> _SCRIPT_
-> _FASTA_
-> _TARA_
-> _WORKDIR_
-> _CONDAENV_
+> Il faut modifier les différentes variables \
+> - **_SCRIPT_** \
+> - **_FASTA_** \
+> - **_TARA_** \
+> - **_WORKDIR_** \
+> - **_CONDAENV_**
 
-> [:TIP]
+> [!TIP]
 > Le chemin vers l'environement Conda peut être trouvé en utilisant la commande `conda env list`
 
 ## Execution - SLURM
