@@ -1,90 +1,77 @@
-# Run locally
+Toto at Banyuls
+___
 
-This pipeline has been tested on Linux (Ubuntu 22.04). No version has been tested on MacOS or Windows.
+## Présentation
 
-To use this pipeleine, you need to install conda. 
+toto_a_banyuls is an iterative BLAST (Basic Local Alignment Search Tool) pipeline. It consists of two main parts. 
+- The first part (optional) consists of an alignment of all sequences against all sequences (Tara sequence and user sequence).
+- The second part (mandatory) is an iterative BLASTp. An alignment with BLAST is performed for each new match obtained with the previous BLAST.
+
+The tool used for BLAST is Diamond (v2.1.8). SeqKit2 (2.8.2) is also used. 
+
+## Installation
+
+Ce pipeline a été testé sur Linux (exécution local : Ubuntu 22.04, cluster : SLURM). Aucune version n'a été testé sur MacOS et sur Windows.
+
+Pour utiliser ce pipeline, Conda (ou Mamba) doit être installé : 
 - Installation with [Miniconda](https://docs.anaconda.com/miniconda/miniconda-install/)
 - Installation with [Anacodna](https://docs.anaconda.com/anaconda/install/)
-- :heart: Installation with [Miniforge](https://github.com/conda-forge/miniforge?tab=readme-ov-file) :heart:
+- Installation with [Miniforge](https://github.com/conda-forge/miniforge?tab=readme-ov-file) :heart:
 
-## Step 1 - Create and activate a conda environment
+> [!TIP]
+> The use of a Conda environment ensures reproducibility of analyses and, more generally, compliance with the FAIR (Findable, Accessible, Interoperable, Reusable) principles.
+> It ensures that versions of tools, modules or packages are in the selected versions compatible with the pipeline.
 
-To run this pipeline, you need to create a conda environment. We use the `environment.yml` file, which contains all the different tools (Seqkit, Diamond) and languages (Python) used by the pipeline.
+For more information on the FAIR Principles : [https://en.wikipedia.org/wiki/Fair_data](https://en.wikipedia.org/wiki/Fair_data).
 
-> [!NOTE] 
-> The use of a Conda environment ensures the reproducibility of bioinformatics analyses. Sharing a YAML file ensures that the tools installed are in the correct version.
+## Run - local
+
+### Step 1 - Building the Conda environment
+
+The Conda environment can be built from the YAML file `environment.yml`.
 
 ```bash
 conda env create -f environment.yml
-```
-
-When the conda environment is created, it must be activated.
-
-```bash
-conda activate genotech
 ```
 
 For more information on the YAML (or YML) format: [https://en.wikipedia.org/wiki/YAML](https://en.wikipedia.org/wiki/YAML)
 
-For more information about Conda: [https://conda.io/projects/conda/en/latest/user-guide/cheatsheet.html](https://conda.io/projects/conda/en/latest/user-guide/cheatsheet.html)
+For more information about Conda : [https://conda.io/projects/conda/en/latest/user-guide/cheatsheet.html](https://conda.io/projects/conda/en/latest/user-guide/cheatsheet.html)
 
-## Step 2 - Create the Diamond database (optional)
+### Step 2 - Run pipeline
 
-To use Diamond BLASTp, it is necessary to build a database containing the sequences used for alignment (for example: [non-redundant protein sequences (nr)](https://www.ncbi.nlm.nih.gov/refseq/about/nonredundantproteins/) of NCBI)
-
-```bash 
-diamond makedb --in data/tara -d data/tara -p 5
-```
-
-> [!IMPORTANT]  
-> `--in`: Path to the input protein reference database file in FASTA format \
-> `-d`: Path to the output DIAMOND database file. \
-> `-p`: Number of CPU threads.
-
-Pour plus d'information consulter la [documentation](https://github.com/bbuchfink/diamond/wiki/3.-Command-line-options).
-
-## Étape 3 - BLASTp (alignement des séquences)
-
-You're now ready to run Diamond BLASTp with this pipeline.
-
-> [!NOTE] 
-> This pipeline runs Diamond BLASTp X times for each new sequence obtained after each iteration.
+A script is available to run the pipeline locally: `scripts/local_toto_search_homologs.sh`.
 
 ```bash
-./bash toto_search_homologs.sh -r 8 -f fasta_sequence -c 8
+cd scripts
+
+bash local_toto_search_homologs.sh
 ```
 
-> [!IMPORTANT]  
-> `-r`: Number of diamond BLASTp iterations \
-> `-f`: File with FASTA sequences \
-> `-c`: Number of CPU threads.
+> [!NOTE]
+> You need to modify the various variables :
+> _SCRIPT_
+> _FASTA_
+> _TARA_
+> _WORKDIR_
+> _CONDAENV_
 
-## Output description
+> [:TIP]
+> The path to the Conda environment can be found using the command `conda env list`.
 
-- `tmp`: contains working environments with temporary files. Working environment names are of the form `year-month-day_hour-minute-second`.
-- `results`: dossier contenant les résulats
-    - `sequence_list.txt`: list of all sequences
-    - `diamond_alignment.tsv`: Tabulation-Separated Values (TSV) file containing all alignments obtained with Diamond BLASTp (result of all iterations)
-    - `tara_sequence.fasta`: FASTA file containing the sequences obtained with the database scan
+## Run - SLURM
 
-# Exécuter avec SLURM
+[En développement]
 
-Pour avoir plus d'information, consulter la partie [Run locally](#run-locally)
+## Références
 
-## Step 1 - Create a conda environment (optional)
+If you use this pipeline, please cite the following articles: 
+1. B. Buchfink, K. Reuter, et H.-G. Drost, « Sensitive protein alignments at tree-of-life scale using DIAMOND », Nat Methods, vol. 18, no 4, Art. no 4, avr. 2021, doi: [10.1038/s41592-021-01101-x](https://doi.org/10.1038/s41592-021-01101-x).
+2. W. Shen, S. Le, Y. Li, et F. Hu, « SeqKit: A Cross-Platform and Ultrafast Toolkit for FASTA/Q File Manipulation », PLOS ONE, vol. 11, no 10, p. e0163962, oct. 2016, doi: [10.1371/journal.pone.0163962](https://doi.org/10.1371/journal.pone.0163962).
+3. W. Shen, B. Sipos, et L. Zhao, « SeqKit2: A Swiss army knife for sequence and alignment processing », iMeta, vol. 3, no 3, p. e191, 2024, doi: [https://doi.org/10.1002/imt2.191](https://doi.org/10.1002/imt2.191). 
 
-```bash
-module load conda
+___
 
-conda env create -f environment.yml
-```
+### **Authorship & Acknowledgments**
 
-## Step 2 - Run script
-
-```bash
-sbatch slurm_toto_search_homologs.sh
-```
-
-### **Auteur**
-
-- Écrit par Jérémy Rousseau ([@jroussea](https://github.com/jroussea))
+- Written by Jérémy Rousseau ([@jroussea](https://github.com/jroussea))
