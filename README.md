@@ -19,7 +19,7 @@ Pour utiliser ce pipeline, Conda (ou Mamba) doit être installé :
 - Installation with [Miniforge](https://github.com/conda-forge/miniforge?tab=readme-ov-file) :heart:
 
 > [!TIP]
-> The use of a Conda environment ensures reproducibility of analyses and, more generally, compliance with the FAIR (Findable, Accessible, Interoperable, Reusable) principles.
+> The use of a Conda environment ensures reproducibility of analyses and, more generally, compliance with the FAIR (Findable, Accessible, Interoperable, Reusable) principles. \
 > It ensures that versions of tools, modules or packages are in the selected versions compatible with the pipeline.
 
 For more information on the FAIR Principles : [https://en.wikipedia.org/wiki/Fair_data](https://en.wikipedia.org/wiki/Fair_data).
@@ -49,13 +49,12 @@ bash local_toto_search_homologs.sh
 ```
 
 > [!NOTE]
-> You need to modify the various variables :
-> _SCRIPT_
-> _FASTA_
-> _TARA_
-> _WORKDIR_
+> You need to modify the various variables: \
+> _SCRIPT_ \
+> _FASTA_ \
+> _TARA_ \
+> _WORKDIR_ \
 > _CONDAENV_
-
 
 > [:TIP]
 > The path to the Conda environment can be found using the command `conda env list`.
