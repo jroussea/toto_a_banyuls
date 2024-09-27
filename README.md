@@ -1,7 +1,7 @@
 # Toto at Banyuls
 ___
 
-## Présentation
+## Presentation
 
 toto_a_banyuls is an iterative BLAST (Basic Local Alignment Search Tool) pipeline. It consists of two main parts. 
 - The first part (optional) consists of an alignment of all sequences against all sequences (Tara sequence and user sequence).
