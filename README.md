@@ -62,7 +62,10 @@ bash local_toto_search_homologs.sh
 
 ## Run - SLURM
 
-[En développement]
+> [!TIP]
+> To check pipeline execution \
+> `squeue -u $USER` \
+> `cat *.log`
 
 ## Références
 

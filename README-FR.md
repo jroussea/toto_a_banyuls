@@ -61,7 +61,16 @@ bash local_toto_search_homologs.sh
 
 ## Execution - SLURM
 
-[En développement]
+```bash
+cd scripts
+
+sbatch slurm_toto_search_homologs.sh
+```
+
+> [!TIP]
+> Pour vérifier l'exécution du pipeline \
+> `squeue -u $USER` \
+> `cat *.log`
 
 ## Références
 
