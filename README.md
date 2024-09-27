@@ -62,6 +62,12 @@ bash local_toto_search_homologs.sh
 
 ## Run - SLURM
 
+```bash
+cd scripts
+
+sbatch slurm_toto_search_homologs.sh
+```
+
 > [!TIP]
 > To check pipeline execution \
 > `squeue -u $USER` \
