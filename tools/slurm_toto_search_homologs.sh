@@ -15,7 +15,7 @@ module load conda
 
 cd /shared/projects/darkdino/test_ue_lucie/toto_a_banyuls/scripts
 
-SCRIPT="/shared/projects/darkdino/test_ue_lucie/toto_a_banyuls"
+SCRIPT="/shared/projects/darkdino/test_ue_lucie/toto_a_banyuls/tools/toto_search_homologs"
 FASTA="/shared/projects/darkdino/test_ue_lucie/toto_a_banyuls/test/sequences.fasta"
 TARA="/shared/projects/darkdino/test_ue_lucie/toto_a_banyuls/database/OMID_supegal40sp_metaT.aa"
 WORKDIR="/shared/projects/darkdino/test_ue_lucie/toto_a_banyuls/analysis"
