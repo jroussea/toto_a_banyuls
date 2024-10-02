@@ -59,6 +59,14 @@ Pour plus d'information sur le format YAML (ou YML): [https://en.wikipedia.org/w
 
 Pour plus d'information concernant Conda : [https://conda.io/projects/conda/en/latest/user-guide/cheatsheet.html](https://conda.io/projects/conda/en/latest/user-guide/cheatsheet.html)
 
+### Étape 2 - Activer l'environement
+
+Avant d'exécuter le pipeline, il est nécessaire d'activer l'environement Conda créé précédement afin de pouvoir utiliser les commandes.
+
+```bash
+conda activate toto_a_banyuls
+``` 
+
 ### Étape 2 - Exécution du pipeline
 
 Un script est disponible pour l'exécution local du pipeline : `scripts/local_toto_search_homologs.sh`
@@ -83,9 +91,9 @@ bash local_toto_search_homologs.sh
 
 ## Execution - SLURM
 
-Consulté les condition d'utilisation de Conda concernant le cluster que vous utilisé :
-- ABiMS (Station Biologique de Roscoff) : [https://abims-sbr.gitlab.io/cluster/doc/software/module/#conda](https://abims-sbr.gitlab.io/cluster/doc/software/module/#conda)
-- IFB-core (Institut Français de Bioinformatique) : [https://ifb-elixirfr.gitlab.io/cluster/doc/software/module/#conda](https://ifb-elixirfr.gitlab.io/cluster/doc/software/module/#conda)
+Pour l'écution avec SLURM, les outils sont chargé avec la commande `module load <nom du module>`.
+
+Les versions utilisé sont celle présente sur le cluster de calcul [ABiMS (Station Biologique de Roscoff)](https://abims.sb-roscoff.fr/). En fonction de votre système il peut être nécessaire de les modifier.
 
 ```bash
 cd tools
@@ -99,6 +107,8 @@ Il est nécessaire de modifier les variable, cf : [Exécution local](#execution-
 > Pour vérifier l'exécution du pipeline \
 > `squeue -u $USER` \
 > `cat *.log`
+
+Pour plus d'information concernant l'utilisation d'un cluster de calcul utilisant SLURM vous pouvez consulter la [documentation](https://slurm.schedmd.com/documentation.html).
 
 ## Références
 
