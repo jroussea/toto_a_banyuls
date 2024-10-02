@@ -64,7 +64,7 @@ Pour plus d'information concernant Conda : [https://conda.io/projects/conda/en/l
 Un script est disponible pour l'exécution local du pipeline : `scripts/local_toto_search_homologs.sh`
 
 ```bash
-cd scripts
+cd tools
 
 bash local_toto_search_homologs.sh
 ```
@@ -88,7 +88,7 @@ Consulté les condition d'utilisation de Conda concernant le cluster que vous ut
 - IFB-core (Institut Français de Bioinformatique) : [https://ifb-elixirfr.gitlab.io/cluster/doc/software/module/#conda](https://ifb-elixirfr.gitlab.io/cluster/doc/software/module/#conda)
 
 ```bash
-cd scripts
+cd tools
 
 sbatch slurm_toto_search_homologs.sh
 ```
