@@ -11,7 +11,6 @@ Ce pipeline utilise les outils Diamond (v2.1.8) pour réaliser le BLAST ainsi qu
 
 ```bash
 toto_a_banyuls/
-
 │
 ├── analysis/  # dossier qui contiendra les résultats des anlyses
 │
