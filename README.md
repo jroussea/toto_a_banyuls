@@ -1,47 +1,44 @@
-# Toto at Banyuls
+# Toto à Banyuls
 ___
 
-## Presentation
+## Présentation
 
-toto_a_banyuls is an iterative BLAST (Basic Local Alignment Search Tool) pipeline. It consists of two main parts. 
-- The first part (optional) consists of an alignment of all sequences against all sequences (Tara sequence and user sequence).
-- The second part (mandatory) is an iterative BLASTp. An alignment with BLAST is performed for each new match obtained with the previous BLAST.
+toto_a_banyuls est un pipeline permettant de réaliser un BLAST (Basic Local Alignment Search Tool) de mannière itératif. Il ce décompose en deux partie principale. 
+- La première partie correspond au BLASTp itératif. Un alignment avec BLAST est réaliser pour chaque nouveau match obtenu avec le BLAST précédent.
+- La deuxième parie consiste en un alignement de toutes les séquences (trouvé dans les base de données ainsi que les séquences initiale) contre elle même.
 
-The tool used for BLAST is Diamond (v2.1.8). SeqKit2 (2.8.2) is also used. 
+Ce pipeline utilise les outils Diamond (v2.1.8) pour réaliser le BLAST ainsi que Seqkit2 (v2.8.2).
 
 ## Installation
 
-This pipeline has been tested on Linux (local execution: Ubuntu 22.04, cluster: SLURM). No version has been tested on MacOS or Windows.
+Ce pipeline a été testé sur Linux (Ubuntu 22.04) ainsi que sur une plateforme HPC (SLURM).
 
-To use this pipeline Conda (or Mamba) must be installed
-
-- Installation with [Miniconda](https://docs.anaconda.com/miniconda/miniconda-install/)
-- Installation with [Anacodna](https://docs.anaconda.com/anaconda/install/)
-- Installation with [Miniforge](https://github.com/conda-forge/miniforge?tab=readme-ov-file) :heart:
+Afin d'utiliser ce pipeline Conda (ou Mamba) doit être installé : 
+- Installation avec [Miniconda](https://docs.anaconda.com/miniconda/miniconda-install/)
+- Installation avec [Anacodna](https://docs.anaconda.com/anaconda/install/)
+- Installation avec [Miniforge](https://github.com/conda-forge/miniforge?tab=readme-ov-file) :heart:
 
 > [!TIP]
-> The use of a Conda environment ensures reproducibility of analyses and, more generally, compliance with the FAIR (Findable, Accessible, Interoperable, Reusable) principles. \
-> It ensures that versions of tools, modules or packages are in the selected versions compatible with the pipeline.
+> L'utilisation d'un environnement Conda assure la reproductibilité des analyses \
+> Les outils ainsi installé sont toujour dans la version sélectionné par le développeur
 
-For more information on the FAIR Principles : [https://en.wikipedia.org/wiki/Fair_data](https://en.wikipedia.org/wiki/Fair_data).
+## Execution - local
 
-## Run - local
+### Étape 1 - Constuire l'environnement
 
-### Step 1 - Building the Conda environment
-
-The Conda environment can be built from the YAML file `environment.yml`.
+L'environnement Conda peut être construit à partir du fichier YAML `environment.yml`.
 
 ```bash
 conda env create -f environment.yml
 ```
 
-For more information on the YAML (or YML) format: [https://en.wikipedia.org/wiki/YAML](https://en.wikipedia.org/wiki/YAML)
+Pour plus d'information sur le format YAML (ou YML): [https://en.wikipedia.org/wiki/YAML](https://en.wikipedia.org/wiki/YAML)
 
-For more information about Conda : [https://conda.io/projects/conda/en/latest/user-guide/cheatsheet.html](https://conda.io/projects/conda/en/latest/user-guide/cheatsheet.html)
+Pour plus d'information concernant Conda : [https://conda.io/projects/conda/en/latest/user-guide/cheatsheet.html](https://conda.io/projects/conda/en/latest/user-guide/cheatsheet.html)
 
-### Step 2 - Run pipeline
+### Étape 2 - Exécution du pipeline
 
-A script is available to run the pipeline locally: `scripts/local_toto_search_homologs.sh`.
+Un script est disponible pour l'exécution local du pipeline : `scripts/local_toto_search_homologs.sh`
 
 ```bash
 cd scripts
@@ -50,17 +47,22 @@ bash local_toto_search_homologs.sh
 ```
 
 > [!NOTE]
-> You need to modify the various variables: \
-> - **_SCRIPT_** \
-> - **_FASTA_** \
-> - **_TARA_** \
-> - **_WORKDIR_** \
-> - **_CONDAENV_**
+> Il faut modifier les différentes variables \
+> - **_SCRIPT_** : chemin vers le script main.sh \
+> - **_FASTA_** : chemin vers le fichier FASTA \
+> - **_TARA_** : chemin vers la banque de données \
+> - **_WORKDIR_** : chemin vers le répertoire de travail (généralement l'endroit ou se situe le fichier FASTA) \
+> - **_GENE_** : nom du répertoire de travail \
+> - **_CONDAENV_** : chemin vers l'environement Conda
 
 > [!TIP]
-> The path to the Conda environment can be found using the command `conda env list`.
+> Le chemin vers l'environement Conda peut être trouvé en utilisant la commande `conda env list`
 
-## Run - SLURM
+## Execution - SLURM
+
+Consulté les condition d'utilisation de Conda concernant le cluster que vous utilisé :
+- ABiMS (Station Biologique de Roscoff) : [https://abims-sbr.gitlab.io/cluster/doc/software/module/#conda](https://abims-sbr.gitlab.io/cluster/doc/software/module/#conda)
+- IFB-core (Institut Français de Bioinformatique) : [https://ifb-elixirfr.gitlab.io/cluster/doc/software/module/#conda](https://ifb-elixirfr.gitlab.io/cluster/doc/software/module/#conda)
 
 ```bash
 cd scripts
@@ -68,20 +70,22 @@ cd scripts
 sbatch slurm_toto_search_homologs.sh
 ```
 
+Il est nécessaire de modifier les variable, cf : [Exécution local](#execution---local)
+
 > [!TIP]
-> To check pipeline execution \
+> Pour vérifier l'exécution du pipeline \
 > `squeue -u $USER` \
 > `cat *.log`
 
 ## Références
 
-If you use this pipeline, please cite the following articles: 
+Si vous utilisé ce pipeline, veuillez citer les articles : 
 1. B. Buchfink, K. Reuter, et H.-G. Drost, « Sensitive protein alignments at tree-of-life scale using DIAMOND », Nat Methods, vol. 18, no 4, Art. no 4, avr. 2021, doi: [10.1038/s41592-021-01101-x](https://doi.org/10.1038/s41592-021-01101-x).
 2. W. Shen, S. Le, Y. Li, et F. Hu, « SeqKit: A Cross-Platform and Ultrafast Toolkit for FASTA/Q File Manipulation », PLOS ONE, vol. 11, no 10, p. e0163962, oct. 2016, doi: [10.1371/journal.pone.0163962](https://doi.org/10.1371/journal.pone.0163962).
 3. W. Shen, B. Sipos, et L. Zhao, « SeqKit2: A Swiss army knife for sequence and alignment processing », iMeta, vol. 3, no 3, p. e191, 2024, doi: [https://doi.org/10.1002/imt2.191](https://doi.org/10.1002/imt2.191). 
 
 ___
 
-### **Authorship & Acknowledgments**
+### **Auteur et Remerciments**
 
-- Written by Jérémy Rousseau ([@jroussea](https://github.com/jroussea))
+- Écrit par Jérémy Rousseau ([@jroussea](https://github.com/jroussea))
