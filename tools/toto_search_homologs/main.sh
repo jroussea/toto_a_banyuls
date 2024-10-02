@@ -40,8 +40,10 @@ source activate $env
 #### Parameters ####
 ####################
 
+echo $cpus
+
 #RunName=`date +'%m%d%Y_%H-%M-%S'`
-RunName=$gene".cpu"$cpus".r8"
+RunName="$gene.cpu$cpus.r8"
 DirName=$(dirname "$0")
 
 # create folder

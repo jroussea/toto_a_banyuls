@@ -7,4 +7,4 @@ WORKDIR="/home/jrousseau/Documents/git_projects/toto_a_banyuls/analysis/SEQUENCE
 GENE="SEQUENCES"
 CONDAENV="/home/jrousseau/miniforge3/envs/toto_a_banyuls"
 
-bash $SCRIPT/main.sh -f $FASTA -t $TARA -w $WORKDIR -g $GENE -e $CONDAENV -r 8 -c 10bash $SCRIPT/main.sh -f $FASTA -t $TARA -w $WORKDIR -e $CONDAENV -r 8 -c 10
+bash $SCRIPT/main.sh -f $FASTA -t $TARA -w $WORKDIR -g $GENE -e $CONDAENV -r 8 -c 10
