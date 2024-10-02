@@ -5,5 +5,4 @@ channels:
   - conda-forge
 dependencies:
   - diamond=2.1.8=h43eeafb_0
-  - pandas=2.2.3=py312hf9745cd_1
   - seqkit=2.8.2=h9ee0642_1
