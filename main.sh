@@ -16,13 +16,13 @@ fi
 # si arguments on commence le script
 
 # on parse les arguments
-while getopts ":f:t:w:y:e:a:r:c:" PARAM; do
+while getopts ":f:t:w:g:e:r:c:" PARAM; do
    case "$PARAM" in
       f) fasta=$OPTARG;;
       t) tara=$OPTARG;;
       w) work=$OPTARG;;
+      g) gene=$OPTARG;;
       e) env=$OPTARG;;
-      a) all=$OPTARG;;
       r) run=$OPTARG;;
       c) cpus=$OPTARG;;
       \?) print_usage; exit 1 ;;
@@ -41,7 +41,7 @@ source activate $env
 ####################
 
 #RunName=`date +'%m%d%Y_%H-%M-%S'`
-RunName=`date +'%m%d%Y_%H%M%S'`".cpu"$cpus".r8"
+RunName=$gene".cpu"$cpus".r8"
 DirName=$(dirname "$0")
 
 # create folder
@@ -67,60 +67,24 @@ cat $tara $fasta > $path_database/sequence_bases_and_tara.faa
 #      - tara.dmnd : contient uniquement les séquences fasta de TARA Océan
 #      - all.dmnd : contient les séquences fasta de TARA + les séquences fasta de Toto
 
-echo -e "\nSTART BUILD DATABASE\n"
+echo -e "\nSTART BUILD DATABASE\n" >> $path_work/logFile.txt
 
 diamond makedb --in $tara -d $path_database/tara -p $cpus
 
-echo -e "\nEND BUILD DATABASE\n"
-
-if [[ "$all" == "true" ]]
-then
-
-  echo -e "\nSTART BUILD DATABASE\n"
-
-  diamond makedb --in $path_database/sequence_bases_and_tara.faa -d $path_database/all -p $cpus
-
-  echo -e "\nEND BUILD DATABASE\n"
-
-fi
-
-###########################################
-#### STEP 2: Diamond BLASTp all vs all ####
-###########################################
-
-if [[ "$all" == "true" ]]
-then
-
-  echo -e "\nSTART BLASTp ALL vs ALL\n"
-
-  diamond blastp \
-          -d $path_database/all.dmnd \
-          -q $path_database/sequence_bases_and_tara.faa\
-          -o $path_work/all_against_all.blastp \
-          --sensitive \
-          -p $cpus \
-          -e 0.001 \
-          --matrix BLOSUM62 \
-         --outfmt 6 qseqid qlen qstart qend sseqid slen sstart send length pident ppos score evalue bitscore
-
-  echo -e "\nEND BLASTp ALL vs ALL\n"
-
-fi
+echo -e "\nEND BUILD DATABASE\n" >> $path_work/logFile.txt
 
 ####################################
-#### STEP 3 : Interative BLASTp ####
+#### STEP 2 : Interative BLASTp ####
 ####################################
 
 seqkit seq $fasta -n > $path_work/sequence_base_and_found.txt
 
 fasta_list=$fasta
 
-echo $fasta_list
-
 for (( i=1; i<=$run; i++ ))
 do
 
-  echo -e "\nRun $i START\n"
+  echo -e "\nRun $i START\n" >> $path_work/logFile.txt
 
   diamond blastp \
           -d $path_database/tara.dmnd \
@@ -150,13 +114,13 @@ do
     cat $path_tmp/$tmp_name >> $path_work/sequence_found.txt
     cat $path_tmp/fasta_$i.fasta >>  $path_work/sequence_found.faa
 
-    echo -e "\nRun $i END\n"
+    echo -e "\nRun $i END\n" >> $path_work/logFile.txt
 else
 
     #mv sequence_list.txt results/
     #seqkit grep -f $tmp/tara_id.txt data/protein_part_001.faa -o results/tara_sequence.fasta
 
-    echo -e "\nBREAK\n"
+    echo -e "\nBREAK\n" >> $path_work/logFile.txt
 
     break;
 
@@ -165,3 +129,20 @@ fi
 done
 
 cat $fasta $path_work/sequence_found.faa > $path_work/sequence_base_and_found.faa
+
+##################################
+#### STEP 3 : All against All ####
+##################################
+
+echo -e "\nAll againts All" >> $path_work/logFile.txt
+
+diamond makedb --in $path_work/sequence_base_and_found.faa -d $path_database/all_against_all -p $cpus
+
+diamond blastp \
+          -d $path_database/all_against_all.dmnd \
+          -q $path_work/sequence_base_and_found.faa \
+          -o $path_work/all_against_all.blastp \
+          -p $cpus \
+          -e 0.001 \
+          --matrix BLOSUM62 \
+          --outfmt 6 qseqid qlen qstart qend sseqid slen sstart send length pident ppos score evalue bitscore
