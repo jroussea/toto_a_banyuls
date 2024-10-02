@@ -18,6 +18,7 @@ toto_a_banyuls/
 ├── scripts/  # Dossier contenant les scripts permettant l'exécution du pipeline
 │   ├── local_toto_search_homologs.sh  # Exécution du pipeline sur un ordinateur
 │   └── slurm_toto_search_homologs.sh  # Exécution du pipeline sur un cluster de calcul SLURM
+│
 ├── test/
 │   └── sequence.fasta # Fichier FASTA test
 │
