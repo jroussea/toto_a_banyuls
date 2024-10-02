@@ -26,9 +26,7 @@ toto_a_banyuls/
 │
 ├── main.sh # script principale permettant de rechercher les homologue
 │
-├── README.md # Le fichier que vous êtes en train de lire
-│
-└── smileys/  # Smileys
+└── README.md # Le fichier que vous êtes en train de lire
 ```
 
 ## Installation
