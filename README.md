@@ -11,7 +11,7 @@ Ce pipeline utilise les outils Diamond (v2.1.8) pour réaliser le BLAST ainsi qu
 
 ```bash
 toto_a_banyuls/
-├── bin/  # Contient un script python utilisé pour chercher les homologues
+
 │
 ├── analysis/  # dossier qui contiendra les résultats des anlyses
 │
@@ -23,6 +23,7 @@ toto_a_banyuls/
 │   └── toto_search_homologs/ # outils permettant de rechercher les homologues
 │       ├── bin/  # Contient un script python utilisé pour chercher les homologues
 │       └── main.sh # script principale permettant de rechercher les homologue
+│           └── toto_search_homologs.py
 │
 ├── test/
 │   └── sequence.fasta # Fichier FASTA test
