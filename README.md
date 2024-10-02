@@ -9,31 +9,15 @@ toto_a_banyuls est un pipeline permettant de réaliser un BLAST (Basic Local Ali
 
 Ce pipeline utilise les outils Diamond (v2.1.8) pour réaliser le BLAST ainsi que Seqkit2 (v2.8.2).
 
-assets/
-├── bin/  # Contient un script python utilisé pour chercher les homologues
+assets/ \ 
+├── bin/  # Contient un script python utilisé pour chercher les homologues \
 │
-├── analysis/  # dossier qui contiendra les résultats des anlyses
+├── analysis/  # dossier qui contiendra les résultats des anlyses \
 │
-├── scripts/  # Dossier contenant les scripts permettant l'exécution du pipeline
-│   ├── base/  # Styles de base pour tout le site
-│   ├── components/  # Commposants spécifiques
-│   │   ├── _editor.scss  # Ex : l'éditeur
-│   │   ...
-│   ├── layout/  # Styles pour la structure du site
-│   │   ├── _header.scss  # Ex : l'en-tête...
-│   │   ├── _sidebar.scss  # ... ou la barre latérale
-│   │   ...
-│   ├── mixins/  # Mixins SCSS
-│   ├── pages/  # Styles pour certaines pages
-│   │   ├── _home.scss  # Ex : la page d'accueil
-│   │   ...
-│   ├── variables/  # Variables SCSS
-│   │
-│   ├── main.scss  # Fichier de configuation
-│   ├── zmd.scss  # Feuille de style pour EPUB
-│   ├── _sprite.scss.hbs  # Template Handlebars pour la création du sprite
-│   ...
-│
+├── scripts/  # Dossier contenant les scripts permettant l'exécution du pipeline \
+│   ├── local_toto_search_homologs.sh  # Exécution du pipeline sur un ordinateur \
+│   └── slurm_toto_search_homologs.sh  # Exécution du pipeline sur un cluster de calcul SLURM \
+│ \
 └── smileys/  # Smileys
 
 ## Installation
