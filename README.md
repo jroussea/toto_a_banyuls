@@ -15,16 +15,19 @@ toto_a_banyuls/
 │
 ├── analysis/  # dossier qui contiendra les résultats des anlyses
 │
-├── scripts/  # Dossier contenant les scripts permettant l'exécution du pipeline
+├── database/ # dossier ou est stocké la base de donnée
+│
+├── tools/  # Dossier contenant les scripts permettant l'exécution du pipeline
 │   ├── local_toto_search_homologs.sh  # Exécution du pipeline sur un ordinateur
-│   └── slurm_toto_search_homologs.sh  # Exécution du pipeline sur un cluster de calcul SLURM
+│   ├── slurm_toto_search_homologs.sh  # Exécution du pipeline sur un cluster de calcul SLURM
+│   └── toto_search_homologs/ # outils permettant de rechercher les homologues
+│       ├── bin/  # Contient un script python utilisé pour chercher les homologues
+│       └── main.sh # script principale permettant de rechercher les homologue
 │
 ├── test/
 │   └── sequence.fasta # Fichier FASTA test
 │
 ├── environment.yml # Fichier pour construire l'environement Conda
-│
-├── main.sh # script principale permettant de rechercher les homologue
 │
 └── README.md # Le fichier que vous êtes en train de lire
 ```
