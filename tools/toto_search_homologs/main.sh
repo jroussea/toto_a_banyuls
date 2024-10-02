@@ -16,13 +16,12 @@ fi
 # si arguments on commence le script
 
 # on parse les arguments
-while getopts ":f:t:w:g:e:r:c:" PARAM; do
+while getopts ":f:t:w:g:r:c:" PARAM; do
    case "$PARAM" in
       f) fasta=$OPTARG;;
       t) tara=$OPTARG;;
       w) work=$OPTARG;;
       g) gene=$OPTARG;;
-      e) env=$OPTARG;;
       r) run=$OPTARG;;
       c) cpus=$OPTARG;;
       \?) print_usage; exit 1 ;;
@@ -30,17 +29,9 @@ while getopts ":f:t:w:g:e:r:c:" PARAM; do
    esac
 done
 
-###########################
-#### Conda environment ####
-###########################
-
-source activate $env
-
 ####################
 #### Parameters ####
 ####################
-
-echo $cpus
 
 #RunName=`date +'%m%d%Y_%H-%M-%S'`
 RunName="$gene.cpu$cpus.r8"
