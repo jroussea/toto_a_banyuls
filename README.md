@@ -9,16 +9,18 @@ toto_a_banyuls est un pipeline permettant de réaliser un BLAST (Basic Local Ali
 
 Ce pipeline utilise les outils Diamond (v2.1.8) pour réaliser le BLAST ainsi que Seqkit2 (v2.8.2).
 
-toto_a_banyuls/ \ 
-├── bin/  # Contient un script python utilisé pour chercher les homologues \
-│ \
-├── analysis/  # dossier qui contiendra les résultats des anlyses \
-│ \
-├── scripts/  # Dossier contenant les scripts permettant l'exécution du pipeline \
-│   ├── local_toto_search_homologs.sh  # Exécution du pipeline sur un ordinateur \
-│   └── slurm_toto_search_homologs.sh  # Exécution du pipeline sur un cluster de calcul SLURM \
-│ \
+```bash
+toto_a_banyuls/
+├── bin/  # Contient un script python utilisé pour chercher les homologues
+│
+├── analysis/  # dossier qui contiendra les résultats des anlyses
+│
+├── scripts/  # Dossier contenant les scripts permettant l'exécution du pipeline
+│   ├── local_toto_search_homologs.sh  # Exécution du pipeline sur un ordinateur
+│   └── slurm_toto_search_homologs.sh  # Exécution du pipeline sur un cluster de calcul SLURM
+│
 └── smileys/  # Smileys
+```
 
 ## Installation
 
