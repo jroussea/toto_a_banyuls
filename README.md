@@ -65,7 +65,7 @@ Avant d'exécuter le pipeline, il est nécessaire d'activer l'environement Conda
 
 ```bash
 conda activate toto_a_banyuls
-``` 
+```
 
 ### Étape 2 - Exécution du pipeline
 
@@ -75,6 +75,7 @@ Un script est disponible pour l'exécution local du pipeline : `scripts/local_to
 cd tools
 
 bash local_toto_search_homologs.sh
+
 ```
 
 > [!NOTE]
