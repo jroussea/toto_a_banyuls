@@ -16,11 +16,12 @@
 
 module load diamond/2.1.9 seqkit/2.1.0
 
-cd /shared/projects/darkdino/test_ue_lucie/toto_a_banyuls/scripts
+cd /shared/projects/darkdino/toto_a_banyuls/tools
 
-SCRIPT="/shared/projects/darkdino/test_ue_lucie/toto_a_banyuls/tools/toto_search_homologs"
-FASTA="/shared/projects/darkdino/test_ue_lucie/toto_a_banyuls/test/sequences.fasta"
-TARA="/shared/projects/darkdino/test_ue_lucie/toto_a_banyuls/database/OMID_supegal40sp_metaT.aa"
-WORKDIR="/shared/projects/darkdino/test_ue_lucie/toto_a_banyuls/analysis"
+SCRIPT="/shared/projects/darkdino/toto_a_banyuls/tools/toto_search_homologs"
+FASTA="/shared/projects/darkdino/toto_a_banyuls/analysis/sequences.fasta"
+TARA="/shared/projects/darkdino/toto_a_banyuls/database/OMID_supegal40sp_metaT.aa"
+WORKDIR="/shared/projects/darkdino/toto_a_banyuls/analysis/SEQUENCES"
+GENE="SEQUENCES"
 
-bash $SCRIPT/main.sh -f $FASTA -t $TARA -w $WORKDIR -r 8 -c 10
+bash $SCRIPT/main.sh -f $FASTA -t $TARA -w $WORKDIR -g $GENE -r 8 -c 10
